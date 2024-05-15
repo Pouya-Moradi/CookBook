@@ -15,7 +15,9 @@ This is a simple Android application built with Kotlin that allows users to sear
 
 ## Getting Started
 
-1. Clone the project repository by running `git clone https://github.com/Pouya-Moradi/CookBook.git`.
+1. Clone the project repository by running```sh
+git clone https://github.com/Pouya-Moradi/CookBook.git
+```.
 2. Open the project in Android Studio.
 3. Ensure you have the necessary dependencies installed (Room, Coil, Navigation).
 4. Build and run the app on an Android device or emulator.
