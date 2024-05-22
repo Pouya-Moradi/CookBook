@@ -156,3 +156,8 @@ private fun FoodCategoryItem(
         }
     }
 }
+
+@Composable
+private fun FoodCategoryItemPreview() {
+    FoodCategoryItem {}
+}
