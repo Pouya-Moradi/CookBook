@@ -57,5 +57,12 @@ fun FoodNavHost() {
             }
         }
 
+        composable(
+            "food/{foodId}",
+            arguments = listOf(navArgument("foodId") { type = NavType.IntType })
+        ) { backStackEntry ->
+            FoodScreen(food = foodViewModel.getFoodById(backStackEntry.arguments?.getInt("foodId")))
+        }
+
     }
 }
