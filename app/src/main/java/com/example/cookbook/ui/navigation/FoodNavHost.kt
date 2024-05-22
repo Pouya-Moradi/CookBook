@@ -21,6 +21,28 @@ fun FoodNavHost() {
     val navController = rememberNavController()
     val foodViewModel = viewModel<FoodViewModel>(factory = FoodViewModel.Factory)
     NavHost(navController = navController, startDestination = "category") {
+        composable("category") {
+            FoodCategoryScreen(
+                searchQuery = foodViewModel.searchText.collectAsState().value,
+                isSearchingActive = foodViewModel.isSearching.collectAsState().value,
+                searchedFoods = foodViewModel.searchedFoods.collectAsState().value,
+                onFoodCategoryClick = { categoryId ->
+                    navController.navigate("foodList/$categoryId")
+                },
+                onSearchedFoodClick = { food ->
+                    navController.navigate("food/${food.id}")
+                },
+                onQueryChange = foodViewModel::onSearchTextChange,
+                onSearch = foodViewModel::onSearchTextChange,
+                onActiveChange = {
+                    foodViewModel.onToggleSearch()
+                }
+            )
+
+            /* { categoryId ->
+                navController.navigate("foodList/$categoryId")
+            }*/
+        }
 
     }
 }
