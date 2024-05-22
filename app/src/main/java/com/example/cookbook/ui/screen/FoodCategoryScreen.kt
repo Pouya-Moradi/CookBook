@@ -119,3 +119,40 @@ fun FoodCategoryScreen(
         }
     }
 }
+
+@Composable
+private fun FoodCategoryItem(
+    modifier: Modifier = Modifier,
+    foodCategory: FoodCategory = FoodDataProvider.foodCategories[0],
+    onFoodCategoryClick: (Int) -> Unit
+) {
+    Surface(
+        modifier = modifier
+            .fillMaxWidth()
+            .height(120.dp)
+            .padding(vertical = 4.dp)
+            .clickable { onFoodCategoryClick(foodCategory.id) },
+        shape = RoundedCornerShape(4.dp),
+        border = BorderStroke(2.dp, MaterialTheme.colorScheme.primary),
+        color = MaterialTheme.colorScheme.tertiaryContainer
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Text(
+                text = foodCategory.name,
+                modifier = Modifier.weight(1f),
+                textAlign = TextAlign.Center,
+                color = MaterialTheme.colorScheme.onTertiaryContainer,
+                style = MaterialTheme.typography.titleLarge
+            )
+            AsyncImage(
+                modifier = Modifier.weight(1f),
+                model = foodCategory.imageUrl,
+                contentDescription = null,
+                contentScale = ContentScale.FillBounds
+            )
+        }
+    }
+}
