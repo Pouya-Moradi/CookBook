@@ -44,5 +44,18 @@ fun FoodNavHost() {
             }*/
         }
 
+        composable(
+            "foodList/{categoryId}",
+            arguments = listOf(navArgument("categoryId") { type = NavType.IntType })
+        ) { backStackEntry ->
+            val foodCategoryId = backStackEntry.arguments!!.getInt("categoryId")
+            FoodListScreen(
+                foodCategoryId = foodCategoryId,
+                foods = foodViewModel.foods.value.filter { food -> food.foodCategoryId == foodCategoryId }
+            ) { foodId ->
+                navController.navigate("food/$foodId")
+            }
+        }
+
     }
 }
