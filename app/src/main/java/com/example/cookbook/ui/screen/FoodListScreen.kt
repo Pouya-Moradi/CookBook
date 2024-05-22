@@ -68,3 +68,43 @@ fun FoodListScreen(
         }
     }
 }
+
+@Composable
+private fun FoodListItem(
+    food: Food,
+    modifier: Modifier = Modifier,
+    onFoodItemClick: (Int) -> Unit
+) {
+    Surface(
+        modifier = modifier
+            .fillMaxWidth()
+            .height(120.dp)
+
+            .padding(vertical = 4.dp, horizontal = 12.dp)
+            .clickable {
+                onFoodItemClick(food.id)
+            },
+        shape = RoundedCornerShape(4.dp),
+        border = BorderStroke(2.dp, MaterialTheme.colorScheme.primary),
+        color = Color(0xFFF9CF93)
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Text(
+                text = food.name,
+                modifier = Modifier.weight(1f),
+                textAlign = TextAlign.Center,
+                color = MaterialTheme.colorScheme.onTertiaryContainer,
+                style = MaterialTheme.typography.titleLarge
+            )
+            AsyncImage(
+                modifier = Modifier.weight(1f),
+                model = food.imageUrl,
+                contentDescription = null,
+                contentScale = ContentScale.FillBounds
+            )
+        }
+    }
+}
