@@ -120,7 +120,7 @@ fun FoodCategoryScreen(
     }
 }
 
-@Composable
+/*@Composable
 private fun FoodCategoryItem(
     modifier: Modifier = Modifier,
     foodCategory: FoodCategory = FoodDataProvider.foodCategories[0],
@@ -136,6 +136,46 @@ private fun FoodCategoryItem(
         border = BorderStroke(2.dp, MaterialTheme.colorScheme.primary),
         color = MaterialTheme.colorScheme.tertiaryContainer
     ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Text(
+                text = foodCategory.name,
+                modifier = Modifier.weight(1f),
+                textAlign = TextAlign.Center,
+                color = MaterialTheme.colorScheme.onTertiaryContainer,
+                style = MaterialTheme.typography.titleLarge
+            )
+            AsyncImage(
+                modifier = Modifier.weight(1f),
+                model = foodCategory.imageUrl,
+                contentDescription = null,
+                contentScale = ContentScale.FillBounds
+            )
+        }
+    }
+}*/
+
+@Composable
+private fun FoodCategoryItem(
+    modifier: Modifier = Modifier,
+    foodCategory: FoodCategory = FoodDataProvider.foodCategories[0],
+    onFoodCategoryClick: (Int) -> Unit
+) {
+    Surface(
+        modifier = modifier
+            .fillMaxWidth()
+            .height(120.dp)
+            .padding(vertical = 4.dp)
+            //.border(BorderStroke(2.dp, MaterialTheme.colorScheme.primary)) // اعمال stroke
+            .clip(RoundedCornerShape(25)) // گرد کردن دورها
+            .clickable { onFoodCategoryClick(foodCategory.id) }, // کلیک پذیر کردن
+        color = Color()
+    )
+
+
+    {
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
