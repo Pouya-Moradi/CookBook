@@ -14,8 +14,6 @@ import com.example.cookbook.ui.screen.FoodListScreen
 import com.example.cookbook.ui.screen.FoodScreen
 import com.example.cookbook.ui.screen.FoodViewModel
 
-
-
 @Composable
 fun FoodNavHost() {
     val navController = rememberNavController()
@@ -43,7 +41,6 @@ fun FoodNavHost() {
                 navController.navigate("foodList/$categoryId")
             }*/
         }
-
         composable(
             "foodList/{categoryId}",
             arguments = listOf(navArgument("categoryId") { type = NavType.IntType })
@@ -56,13 +53,11 @@ fun FoodNavHost() {
                 navController.navigate("food/$foodId")
             }
         }
-
         composable(
             "food/{foodId}",
             arguments = listOf(navArgument("foodId") { type = NavType.IntType })
         ) { backStackEntry ->
             FoodScreen(food = foodViewModel.getFoodById(backStackEntry.arguments?.getInt("foodId")))
         }
-
     }
 }
